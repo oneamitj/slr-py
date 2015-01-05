@@ -1,3 +1,35 @@
+'''
+@author Amit Joshi
+
+main():
+This is the primary module that is executed at first. Here user to asked to enter the string to be parsed and also all the feedback (like: grammar rules, goto operations, generated states, reduction rules and parse table) are provided to user. Final result about if the string is successfully parsed or not, is also printed here.
+
+read_grammar():
+This function asks user to provide file name where grammar are stored. It reads the file for grammar and place it on list grammar. From the rules terminals and nonterminals are identified and stored in the lists named terminals and non_terminals respectively, where as rules are stored in the dictionary called rule_dict.
+
+augmented_grammar():
+Using the grammar list created in read_grammar(), it generates list of augmented grammar and place it on new_grammar.
+
+compute_I0():
+Here I0 is calculated separately using the rule 1 in new_grammar. The calculated I0 is stored in dictionary I_n with key as 0. So the dictionary I_n[0] represents state I0.
+
+GOTO():
+Now as I0 state is found, using this initial state I_n[0] further states are generated recursively until all the non repeated valid states of the given grammar is generated and stored in the dictionary I_n with their respective state as key. While generating all the state the list shift_list keeps track of all the shift operation that are valid for the given grammar.
+
+follow(var):
+This generates the follow of nonterminal var and returns it.
+
+reduction():
+Here all the possible reduction rules for the given grammar are calculated and stored in the list named reduction_list. Each item of reduction_list is another list whose first and second element gives reduction condition and third provides the rule to be used for for that condition.
+
+Conflict():
+Here, availability of conflict in the given grammar is analyzed. Stores each SR conflict in list SR and RR conflict in list RR. It returns True if there conflict else False.
+
+test(string):
+Using reduction_list and shift_list, action_list is created which resembles the SLR parse table. Now with the help of action_list, stack and string the parsing is done, while displaying each step and content of stack, string and current action thats been called. If the string is acceptable it returns 1 and if not accepted returns 0.
+
+'''
+
 import copy
 
 grammar = []
